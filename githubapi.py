@@ -25,14 +25,14 @@ def hit_end_point():
      and prettyprints the jston with an 
      indentation of 4 spaces (2 tabs)
     '''
-    page = 1
+    # page = 1
 
-    #### check requests status to see if limit was hit
-    url = f'https://api.github.com/users/aa-ag/repos?page{page}per_page=100'
+    # #### check requests status to see if limit was hit
+    # url = f'https://api.github.com/users/aa-ag/repos?page{page}per_page=100'
 
-    request = requests.get(url, data=github_auth)
+    # request = requests.get(url, data=github_auth)
 
-    return request.status_code
+    # return request.status_code
 
     ### actual code
 
@@ -58,6 +58,14 @@ def hit_end_point():
 
         print(f"Something went wrong: {request.status_code}")
 
+
+
+def save_locally():
+    '''
+     helper function to `clone` each repo
+     locally to a give path
+    '''
+    pass
 
 ############------------ DRIVER CODE ------------############
 if __name__ == "__main__":
