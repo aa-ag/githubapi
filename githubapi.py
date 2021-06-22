@@ -25,20 +25,26 @@ def hit_end_point():
      and prettyprints the jston with an 
      indentation of 4 spaces (2 tabs)
     '''
-    url = 'https://api.github.com/users/'
+    page = 1
 
-    request = requests.get(url, data=github_auth)
+    while page < 3:
+        url = f'https://api.github.com/users/aa-ag/repos?page{page}per_page=100'
 
-    if request.status_code == 200:
-    
-        request = request.json()
+        request = requests.get(url, data=github_auth)
 
-        # pp = pprint.PrettyPrinter(indent=4)
-        # pp.pprint(request)
+        if request.status_code == 200:
+        
+            request = request.json()
 
-        for number, repo in enumerate(request):
-            print(number + 1, repo['html_url'])
-    print(f"Something went wrong: {request.status_code}")
+            # pp = pprint.PrettyPrinter(indent=4)
+            # pp.pprint(request)
+
+            for number, repo in enumerate(request):
+                print(number + 1, repo['html_url'])
+
+        page += 1
+
+        print(f"Something went wrong: {request.status_code}")
 
 
 ############------------ DRIVER CODE ------------############
