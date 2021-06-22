@@ -32,7 +32,12 @@ def save_locally():
 
     command = ["git", "clone", repo_being_cloned]
 
-    subprocess.run(command)
+    subprocess.run(command, cwd=path_where_repo_will_be_cloned_to)
+
+    '''
+     If cwd is not None, the function changes the working directory
+     to cwd before executing the child.
+    '''
 
 
 def hit_end_point():
