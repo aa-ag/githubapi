@@ -4,14 +4,14 @@ import pprint
 import settings
 
 ############------------ GLOBAL VARIABLE(S) ------------############
-github_token = settings.GITHUB_TOKEN
+github_auth = settings.GITHUB_AUTH
 
 ############------------ FUNCTION(S) ------------############
 def hit_end_point():
 
-    request = requests.get('https://api.github.com/notifications', auth=('aa-ag', github_token))
+    request = requests.get('https://api.github.com/users/aa-ag/repos', data=github_auth)
     
-    print(request.json())
+    print(request.status_code)
 
 
 ############------------ DRIVER CODE ------------############
