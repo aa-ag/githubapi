@@ -27,6 +27,15 @@ def hit_end_point():
     '''
     page = 1
 
+    #### check requests status to see if limit was hit
+    url = f'https://api.github.com/users/aa-ag/repos?page{page}per_page=100'
+
+    request = requests.get(url, data=github_auth)
+
+    return request.status_code
+
+    ### actual code
+
     while page < 3:
         url = f'https://api.github.com/users/aa-ag/repos?page{page}per_page=100'
 
@@ -39,8 +48,11 @@ def hit_end_point():
             # pp = pprint.PrettyPrinter(indent=4)
             # pp.pprint(request)
 
-            for number, repo in enumerate(request):
-                print(number + 1, repo['html_url'])
+            n = 1
+
+            for repo in request:
+                print(n, repo['html_url'])
+                n += 1
 
         page += 1
 
@@ -50,6 +62,8 @@ def hit_end_point():
 ############------------ DRIVER CODE ------------############
 if __name__ == "__main__":
     hit_end_point()
+    print(hit_end_point()) 
+    # 403
 
 '''
 1 https://github.com/aa-ag/5artists_Angular
