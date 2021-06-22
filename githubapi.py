@@ -30,9 +30,9 @@ def save_locally():
     repo_being_cloned = 'https://github.com/aa-ag/groomer'
     path_where_repo_will_be_cloned_to = destination_path
 
-    command = f'git clone {repo_being_cloned}'
+    command = ["git", "clone", repo_being_cloned]
 
-    subprocess.run(command, cwd=path_where_repo_will_be_cloned_to)
+    subprocess.run(command)
 
 
 def hit_end_point():
