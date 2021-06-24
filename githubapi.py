@@ -49,43 +49,45 @@ def hit_end_point():
     '''
     global github_auth
 
-    page = 1
+    page = 2
 
     # #### check requests status to see if limit was hit
-    # url = f'https://api.github.com/users/aa-ag/repos?page{page}per_page=100'
+    url = f'https://api.github.com/users/aa-ag/repos?page={page}&per_page=100'
 
-    # request = requests.get(url, data=github_auth)
+    request = requests.get(url, data=github_auth)
 
-    # return request.status_code
+    request = request.json()
+
+    n = 1
+
+    for repo in request:
+        print(n, repo['html_url'])
+        n += 1
 
     ### actual code
 
-    while page < 3:
-        url = f'https://api.github.com/users/aa-ag/repos?page{page}per_page=100'
+    # while page < 3:
+    #     url = f'https://api.github.com/users/aa-ag/repos?page{page}per_page=100'
 
-        request = requests.get(url, data=github_auth)
-
-        if request.status_code == 200:
+    #     request = requests.get(url, data=github_auth)
         
-            request = request.json()
+    #     request = request.json()
 
-            # pp = pprint.PrettyPrinter(indent=4)
-            # pp.pprint(request)
+    #     # pp = pprint.PrettyPrinter(indent=4)
+    #     # pp.pprint(request)
 
-            n = 1
+    #     n = 1
 
-            for repo in request:
-                print(n, repo['html_url'])
-                n += 1
+    #     for repo in request:
+    #         print(n, repo['html_url'])
+    #         n += 1
 
-        page += 1
-
-        print(f"Something went wrong: {request.status_code}")
+    #     page += 1
 
 
 ############------------ DRIVER CODE ------------############
 if __name__ == "__main__":
     # hit_end_point()
-    # print(hit_end_point()) 
+    hit_end_point()
     # 403
-    save_locally()
+    # save_locally()
