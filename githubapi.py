@@ -48,6 +48,11 @@ def hit_end_point():
 
 
 def get_one_object_to_check_keys_and_values():
+    '''
+     hits endpoint to get all info within repo object
+     then creates json output file to make it easier to 
+     vizualise entire object
+    '''
     global github_auth
 
     url = 'https://api.github.com/repos/aa-ag/cpython'
