@@ -3,6 +3,7 @@ import requests
 import settings
 import subprocess
 import json
+import csv
 
 ############------------ GLOBAL VARIABLE(S) ------------############
 github_auth = settings.GITHUB_AUTH
@@ -34,6 +35,10 @@ def hit_end_point():
 
     page = 1
 
+    n = 1
+
+    dictionary_for_local_copy = dict()
+
     while page < 3:
         url = f'https://api.github.com/users/aa-ag/repos?page={page}&per_page=100'
 
@@ -42,9 +47,20 @@ def hit_end_point():
         request = request.json()
 
         for repo in request:
-            save_locally(repo['html_url'])
+            dictionary_for_local_copy[n] = repo['html_url']
+            n += 1
+
+        # for repo in request:
+        #     save_locally(repo['html_url'])
 
         page += 1
+
+    local_copy_just_in_case = open('local_copy.csv', 'w')
+
+    writer = csv.writer(local_copy_just_in_case)
+
+    for k, v in dictionary_for_local_copy.items():
+        writer.writerow([k, v])
 
 
 def get_one_object_to_check_keys_and_values():
@@ -68,6 +84,6 @@ def get_one_object_to_check_keys_and_values():
 
 ############------------ DRIVER CODE ------------############
 if __name__ == "__main__":
-    # hit_end_point()
+    hit_end_point()
 
-    get_one_object_to_check_keys_and_values()
+    # get_one_object_to_check_keys_and_values()
