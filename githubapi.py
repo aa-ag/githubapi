@@ -77,13 +77,16 @@ def get_one_object_to_check_keys_and_values():
         
     request = request.json()
 
-    pretty_printed_formatted_response = open('full_response.json', 'w')
+    print(request["fork"])
+
+    # pretty_printed_formatted_response = open('full_response.json', 'w')
     
-    json.dump(request, pretty_printed_formatted_response, indent=4)
+    # json.dump(request, pretty_printed_formatted_response, indent=4)
 
 
 ############------------ DRIVER CODE ------------############
 if __name__ == "__main__":
-    hit_end_point()
+    # hit_end_point()
 
-    # get_one_object_to_check_keys_and_values()
+    get_one_object_to_check_keys_and_values()
+    #True
