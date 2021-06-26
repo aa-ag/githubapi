@@ -2,7 +2,7 @@
 import requests
 import settings
 import subprocess
-import pprint
+import json
 
 ############------------ GLOBAL VARIABLE(S) ------------############
 github_auth = settings.GITHUB_AUTH
@@ -54,9 +54,11 @@ def get_one_object_to_check_keys_and_values():
 
     request = requests.get(url, data=github_auth)
         
-    print(request.status_code)
+    request = request.json()
 
+    pretty_printed_formatted_response = open('full_response.json', 'w')
     
+    json.dump(request, pretty_printed_formatted_response, indent=4)
 
 
 ############------------ DRIVER CODE ------------############
