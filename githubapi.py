@@ -47,8 +47,11 @@ def hit_end_point():
         request = request.json()
 
         for repo in request:
-            dictionary_for_local_copy[n] = repo['html_url']
-            n += 1
+            if repo["fork"] == False:
+                dictionary_for_local_copy[n] = repo['html_url']
+                n += 1
+            else:
+                continue
 
         # for repo in request:
         #     save_locally(repo['html_url'])
@@ -86,7 +89,7 @@ def get_one_object_to_check_keys_and_values():
 
 ############------------ DRIVER CODE ------------############
 if __name__ == "__main__":
-    # hit_end_point()
+    hit_end_point()
 
-    get_one_object_to_check_keys_and_values()
+    # get_one_object_to_check_keys_and_values()
     #True
